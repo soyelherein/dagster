@@ -20,7 +20,7 @@ class TaskMetadata:
 
 
 class EcsRunLauncher(RunLauncher, ConfigurableClass):
-    def __init__(self, inst_data=None, boto3_client=boto3.client("ecs", region_name="us-east-1")):
+    def __init__(self, inst_data=None, boto3_client=boto3.client("ecs")):
         self._inst_data = inst_data
         self.ecs = boto3_client
 
@@ -115,7 +115,7 @@ class EcsRunLauncher(RunLauncher, ConfigurableClass):
     def _task_metadata(self):
         """
         ECS injects an environment variable into each Fargate task. The value
-        of this environment variable is a url that can be queries to introspect
+        of this environment variable is a url that can be queried to introspect
         information about the running task:
 
         https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-metadata-endpoint-v4-fargate.html
