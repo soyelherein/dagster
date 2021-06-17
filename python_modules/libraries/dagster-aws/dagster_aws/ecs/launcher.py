@@ -67,6 +67,7 @@ class EcsRunLauncher(RunLauncher, ConfigurableClass):
             cluster=metadata.cluster,
             overrides={"containerOverrides": [{"name": metadata.container, "command": command}]},
             networkConfiguration={"awsvpcConfiguration": {"subnets": metadata.subnets}},
+            launchType="FARGATE",
         )
 
         arn = response["tasks"][0]["taskArn"]
